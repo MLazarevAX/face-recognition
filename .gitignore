@@ -1,0 +1,7 @@
+.idea/
+/dataset
+/faces
+/new_faces
+/venv
+/pyc
+*.pickle
