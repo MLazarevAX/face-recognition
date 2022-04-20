@@ -5,24 +5,18 @@ from numpy.core.multiarray import result_type
 img_path = "dataset/Putin5.jpg"
 
 
-def face_rec():
-    obama_face_img = face_recognition.load_image_file('fases/Obama.jpg')
-    obama_face_location = face_recognition.face_locations(obama_face_img)
-    putin_and_obama_img = face_recognition.load_image_file('fases/Obama2.jpg')
+def face_recognition(path_from, path_to):
+    putin_and_obama_img = face_recognition.load_image_file(path_from)
     putin_and_obama_face_location = face_recognition.face_locations(putin_and_obama_img)
 
-    # print(obama_face_location, putin_and_obama_face_location)
-    # print(f"Found {len(obama_face_location)} face(s) in this image")
-    # print(f"Found {len(putin_and_obama_face_location)} face(s) in this image")
-
-    pil_img2 = Image.fromarray(putin_and_obama_img)
-    draw2 = ImageDraw.Draw(pil_img2)
+    pil_img = Image.fromarray(putin_and_obama_img)
+    draw = ImageDraw.Draw(pil_img)
 
     for (top, right, bottom, left) in putin_and_obama_face_location:
-        draw2.rectangle(((left, top), (right, bottom)), outline=(255, 255, 0), width=4)
+        draw.rectangle(((left, top), (right, bottom)), outline=(255, 255, 0), width=4)
 
-    del draw2
-    pil_img2.save("new_faces/obama_putin_with_rect.jpg")
+    del draw
+    pil_img.save(path_to)
 
 
 def extracting_faces(path):
@@ -54,7 +48,7 @@ def compare_faces(img_path1, img_path2):
 
 
 def main():
-    # face_rec()
+    # face_rec(img_path)
     # extracting_faces(img_path)
     compare_faces(r'F:\Maks\Face recognition\fases\Putin.jpg', r'F:\Maks\Face recognition\fases\Putin2.jpg')
 
